@@ -18,8 +18,10 @@
         </activity>
         <activity android:name=".Activities.ScoreboardActivity" />
         <activity android:name=".Activities.StartGameActivity" />
-            <activity android:name=".Activities.HelpPopupActivity"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".Activities.HelpPopupActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".Activities.HangmanActivity"></activity>
     </application>
 
 </manifest>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Hangman-master</string>
+
+    <string name="gallows">The Gallows</string>
+    <string name="head">The Head</string>
+    <string name="body">The Body</string>
+    <string name="arm">An Arm</string>
+    <string name="leg">A Leg</string>
 </resources>
