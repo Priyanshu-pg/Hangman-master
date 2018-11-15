@@ -1,6 +1,6 @@
 package com.example.priyanshu.hangman_master.activities.Model;
 
-public class Word {
+public class WordStructure {
     private int id;
     private String name;
     private String category;

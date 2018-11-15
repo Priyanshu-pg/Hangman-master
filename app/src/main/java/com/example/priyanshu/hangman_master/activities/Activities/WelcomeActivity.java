@@ -1,4 +1,4 @@
-package com.example.priyanshu.hangman_master.Activities;
+package com.example.priyanshu.hangman_master.activities.Activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;

@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="word-name"
+    <string-array name="words">
+        <item>peacock:animal:National bird of India</item>
+        <item>leopard:animal:National animal of India</item>
+        <item>kangaroo:animal:National animal of Australia</item>
+        <item>dog:animal:Most human friendly pet</item>
+
+        <item>afghanistan:country:land of afghans</item>
+        <item>argentina:country:silvery land</item>
+        <item>russia:country:largest country in asia</item>
+
+    </string-array>
 </resources>

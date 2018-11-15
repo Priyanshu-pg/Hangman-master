@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.WelcomeActivity">
+    tools:context=".activities.Activities.WelcomeActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        tools:context=".Activities.WelcomeActivity">
+        tools:context=".activities.Activities.WelcomeActivity">
 
         <TextView
             android:id="@+id/textView"

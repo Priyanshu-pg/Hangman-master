@@ -1,22 +1,29 @@
-package com.example.priyanshu.hangman_master.Activities;
+package com.example.priyanshu.hangman_master.activities.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.priyanshu.hangman_master.R;
+import com.example.priyanshu.hangman_master.activities.sql.DatabaseHelper;
 
 public class StartGameActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button button_play;
-    private TextView categorySelected;
+    private Button button_choose_category;
+    private TextView text_category;
     private String[] categories = {"a", "b", "c"};
     private String choosenCategory;
+    private DatabaseHelper databaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,37 +32,60 @@ public class StartGameActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().hide();
 
         initViews();
+        initObjects();
+        initListeners();
     }
 
     private void initViews() {
         button_play = (Button)findViewById(R.id.button_play);
-        categorySelected = (TextView)findViewById(R.id.menu_category);
+        button_choose_category = (Button)findViewById(R.id.button_choose_category);
+        text_category = (TextView)findViewById(R.id.text_category);
     }
+
+    private void initObjects() {
+        databaseHelper = new DatabaseHelper(StartGameActivity.this);
+        categories = databaseHelper.getCategories();
+        choosenCategory = categories.equals(null)?"":categories[0];
+        text_category.setText(choosenCategory);
+    }
+
+    private void initListeners() {
+        button_play.setOnClickListener(this);
+        button_choose_category.setOnClickListener(this);
+    }
+
+
 
     @Override
     public void onClick(View v) {
         switch(v.getId())
         {
-            case R.id.menu_category:
+            case R.id.button_choose_category:
                 chooseCategory();
+                //text_category.setText(choosenCategory);
                 break;
             case R.id.button_play:
                 Intent intentRegister = new Intent(getApplicationContext(), HangmanActivity.class);
+                intentRegister.putExtra("category",choosenCategory);
                 startActivity(intentRegister);
                 break;
         }
     }
 
+    //TODO: make a drop down list to choose one category and pass it to next activity
+    //TODO: make sure user selects one category
     private void chooseCategory() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick a color");
+
+        builder.setTitle("Choose a category");
         builder.setItems(categories, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                choosenCategory = categories[which];
-                categorySelected.setText(choosenCategory);
+                choosenCategory=categories[which];
+                text_category.setText(choosenCategory);
             }
         });
-        builder.show();
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

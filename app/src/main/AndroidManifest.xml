@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.WelcomeActivity">
+        <activity android:name=".activities.Activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ScoreboardActivity" />
-        <activity android:name=".Activities.StartGameActivity" />
+        <activity android:name=".activities.Activities.ScoreboardActivity" />
+        <activity android:name=".activities.Activities.StartGameActivity" />
         <activity
-            android:name=".Activities.HelpPopupActivity"
+            android:name=".activities.Activities.HelpPopupActivity"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".Activities.HangmanActivity"></activity>
+        <activity android:name=".activities.Activities.HangmanActivity"></activity>
     </application>
 
 </manifest>
