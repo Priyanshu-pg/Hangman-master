@@ -87,7 +87,7 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
     private void initObjects() {
         databaseHelper = new DatabaseHelper(HangmanActivity.this);
         Resources res = getResources();
-        category = getIntent().getStringExtra("category");//TODO: get category from startGame activity
+        category = getIntent().getStringExtra("category");
         words = databaseHelper.getWords(category);
         rand = new Random();
         currWord = "";
@@ -140,7 +140,6 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    //TODO: maintain score
     public void letterPressed(View view) {
         //user has pressed a letter to guess
         String ltr=((TextView)view).getText().toString();

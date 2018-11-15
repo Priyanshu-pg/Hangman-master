@@ -72,8 +72,7 @@ public class StartGameActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    //TODO: make a drop down list to choose one category and pass it to next activity
-    //TODO: make sure user selects one category
+
     private void chooseCategory() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

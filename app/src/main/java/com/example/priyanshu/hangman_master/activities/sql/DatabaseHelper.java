@@ -74,7 +74,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //TODO: fill this method
     public String[] getWords(String category)
     {
         String[] columns = {

@@ -30,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     private void initViews() {
         buttonHelp = (FloatingActionButton) findViewById(R.id.button_help);
         buttonStartGame = (Button)findViewById(R.id.button_start_game);
+        //TODO: Decide to remove this scoreboard or make it
         buttonScoreboard = (Button)findViewById(R.id.button_scoreboard);
     }
 
