@@ -1,6 +1,8 @@
 package com.example.priyanshu.hangman_master.activities.Activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +22,8 @@ import com.example.priyanshu.hangman_master.activities.sql.DatabaseHelper;
 import com.example.priyanshu.hangman_master.activities.Helper.LetterAdapter;
 import java.util.Random;
 
+import static android.app.PendingIntent.getActivity;
+
 public class HangmanActivity extends AppCompatActivity implements View.OnClickListener{
     private String[] words;
     private Random rand;
@@ -27,9 +31,13 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
     private String category;
     private boolean isHintUsed;
     private int score;
+    private int record;
 
     private DatabaseHelper databaseHelper;
     private LetterAdapter ltrAdapt;
+    private SharedPreferences sharedPref;
+    SharedPreferences.Editor prefEditor;
+    private String sharedPrefRecordFile = "com.example.priyanshu.hangman_master.record";
 
     private LinearLayout wordLayout;
     private TextView[] charViews;
@@ -37,6 +45,7 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView[] bodyParts;
     private Button button_hint;
     private TextView text_score;
+    private TextView text_record;
     //number of body parts
     private int numParts=6;
     //current part - will increment when wrong answers are chosen
@@ -71,6 +80,7 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
 
         button_hint = (Button)findViewById(R.id.button_hint);
         text_score = (TextView) findViewById(R.id.text_score);
+        text_record = (TextView) findViewById(R.id.text_edit_record);
 
         button_hint.setOnClickListener(this);
     }
@@ -83,6 +93,16 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
         currWord = "";
         isHintUsed = false;
         score = Integer.valueOf(text_score.getText().toString());
+
+        sharedPref = getSharedPreferences(sharedPrefRecordFile, MODE_PRIVATE);
+        record = sharedPref.getInt(getString(R.string.RECORD_KEY), 0);
+
+        prefEditor = sharedPref.edit();
+        record = Math.max(score, record);
+        prefEditor.putInt(getString(R.string.RECORD_KEY), record);
+        prefEditor.apply();
+
+        text_record.setText(String.valueOf(record));
     }
 
     private void playGame() {
@@ -157,12 +177,14 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
                 winBuild.setPositiveButton("Play Again",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                updateRecord();
                                 HangmanActivity.this.playGame();
                             }});
 
                 winBuild.setNegativeButton("Exit",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                updateRecord();
                                 HangmanActivity.this.finish();
                             }});
 
@@ -183,12 +205,14 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
             loseBuild.setPositiveButton("Play Again",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            updateRecord();
                             HangmanActivity.this.playGame();
                         }});
 
             loseBuild.setNegativeButton("Exit",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            updateRecord();
                             HangmanActivity.this.finish();
                         }});
 
@@ -230,5 +254,14 @@ public class HangmanActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 });
         helpBuild.show();
+    }
+
+    private void updateRecord()
+    {
+        record = Math.max(score, record);
+        prefEditor.putInt(getString(R.string.RECORD_KEY), record);
+        prefEditor.apply();
+
+        text_record.setText(String.valueOf(record));
     }
 }

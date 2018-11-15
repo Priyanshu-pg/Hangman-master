@@ -6,4 +6,5 @@
     <string name="body">The Body</string>
     <string name="arm">An Arm</string>
     <string name="leg">A Leg</string>
+    <string name="RECORD_KEY">record</string>
 </resources>
