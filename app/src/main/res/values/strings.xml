@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hangman-master</string>
+    <string name="app_name">Hangman</string>
 
     <string name="gallows">The Gallows</string>
     <string name="head">The Head</string>
